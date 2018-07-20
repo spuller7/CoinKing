@@ -20,9 +20,6 @@ import { Network } from '@ionic-native/network';
 /*
   TODO:
     -Show date on hover on graph
-
-  FIXME:
-    -Watchlist charts don't load on startup when default list is not generated
 */
 
 @Component({
