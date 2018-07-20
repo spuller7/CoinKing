@@ -20,6 +20,13 @@ import { Network } from '@ionic-native/network';
 /*
   TODO:
     -Show date on hover on graph
+    -Change color of portfolio graph if is negative
+    -Add loader to market cap list
+    -Make select item in side item grey color
+  FIXME:
+    -Can't add new coin
+    -Closepup on setting item is broken
+
 */
 
 @Component({

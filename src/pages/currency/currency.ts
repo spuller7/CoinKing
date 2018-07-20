@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, ViewController, NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
-/**
- * Generated class for the CurrencyPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,7 +11,7 @@ export class CurrencyPage {
 
   currency = "";
 
-  constructor(private navParams: NavParams, private view: ViewController, private storage: Storage)
+  constructor(private navParams: NavParams, private view: ViewController, private storage: Storage, public navCtrl: NavController)
   {
     
   }
@@ -31,5 +24,10 @@ export class CurrencyPage {
   {
     this.storage.set('currency', currency);
     this.view.dismiss(currency);
+  }
+
+  closePopup() 
+  {
+    this.navCtrl.pop();
   }
 }

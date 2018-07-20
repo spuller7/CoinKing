@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams, NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 
@@ -21,7 +21,7 @@ export class PortfolioNamePage {
   portfolioName = "";
   name : AbstractControl;
 
-  constructor(private view: ViewController, public navParams: NavParams, private formBuilder: FormBuilder, private storage: Storage)
+  constructor(private view: ViewController, public navParams: NavParams, private formBuilder: FormBuilder, private storage: Storage, private navCtrl: NavController)
   {
     this.portfolioName = this.navParams.get('data').portfolioName;
 
@@ -36,6 +36,11 @@ export class PortfolioNamePage {
   {
     this.storage.set('portfolioName', this.name.value);
     this.view.dismiss(this.name.value);
+  }
+
+  closePopup() 
+  {
+    this.navCtrl.pop();
   }
 
 }
