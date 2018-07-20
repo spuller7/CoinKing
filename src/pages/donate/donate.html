@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="float:right" src="assets/CoinKingLogo.svg" id="logo" />
+    </ion-title>
+  </ion-toolbar>
+  </ion-navbar>
+  <div style="background-color: #414141; background-image: -webkit-linear-gradient(35deg, #2b2b2b 55%, #333333 35%); color: #fff; margin-top: 0px; padding: 5px 0px 10px 0px">
+    <h1 style="text-align: center; margin-top: 0px;">This service is <b style="color: #ffaa00">free</b><br/> and <b style="color: #ffaa00">always</b> will be.</h1><p style="text-align: center; margin-bottom: 0px;">Provide a tip and put a smile on my face.</p>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <div class="donate-coin" style="margin-top: 8px;">
+    <div class="donate-coin-label">Bitcoin (BTC)</div>
+	  <div class="donate-wallet-address" style="display: flex;">
+      <div style="max-width: 60%; float:left;">
+        <p id="bitcoinAddress" class="restrict-text" style="margin-top: 7px; margin-bottom: 7px;">1HxgEqNruQb6Zk3ZW6hFYBAaizr3PLEptu</p>
+      </div>
+      <div style="width: 40%; float: right;">
+        <button (click)='copyBitcoinAddress();' class="pull-right btn btn-xs btn-default hidden-xs">Copy to Clipboard</button>
+      </div>
+    </div>
+    <div class="donate-coin-label">Ethereum (ETH)</div>
+	  <div class="donate-wallet-address" style="display: flex;">
+      <div style="max-width: 60%; float:left;">
+        <p id="ethereumAddress" class="restrict-text" style="margin-top: 7px; margin-bottom: 7px;">0x5B1EE6201abBcCfbe8e3Cc79FcA3AA1778554D66</p>
+      </div>
+      <div style="width: 40%; float: right;">
+        <button (click)='copyEthereumAddress();' class="pull-right btn btn-xs btn-default hidden-xs">Copy to Clipboard</button>
+      </div>
+    </div>
+    <div class="donate-coin-label">Bitcoin Cash (BCH)</div>
+	  <div class="donate-wallet-address" style="display: flex;">
+      <div style="max-width: 60%; float:left;">
+        <p id="bitcoinCashAddress" class="restrict-text" style="margin-top: 7px; margin-bottom: 7px;">qq4a8ayk0t0y5pzxhqlrd79u68dr6prkagsftfz6dc</p>
+      </div>
+      <div style="width: 40%; float: right;">
+        <button (click)='copyBitcoinCashAddress();' class="pull-right btn btn-xs btn-default hidden-xs">Copy to Clipboard</button>
+      </div>
+    </div>
+    <div class="donate-coin-label">Litecoin (LTC)</div>
+	  <div class="donate-wallet-address" style="display: flex;">
+      <div style="max-width: 60%; float:left;">
+        <p id="litecoinAddress" class="restrict-text" style="margin-top: 7px; margin-bottom: 7px;">LgmWwr3RLs9ejByqhhcjic7YFNVUPXhuoF</p>
+      </div>
+      <div style="width: 40%; float: right;">
+        <button (click)='copyLitecoinAddress();' class="pull-right btn btn-xs btn-default hidden-xs">Copy to Clipboard</button>
+      </div>
+    </div>
+    <div class="donate-coin-label">Dash (DASH)</div>
+	  <div class="donate-wallet-address" style="display: flex;">
+      <div style="max-width: 60%; float:left;">
+        <p id="dashAddress" class="restrict-text" style="margin-top: 7px; margin-bottom: 7px;">Xo6qBzaKzJSzeZRwcLMY1EGFXEYZbVURVe</p>
+      </div>
+      <div style="width: 40%; float: right;">
+        <button (click)='copyDashAddress();' class="pull-right btn btn-xs btn-default hidden-xs">Copy to Clipboard</button>
+      </div>
+    </div>
+	</div>
+</ion-content>

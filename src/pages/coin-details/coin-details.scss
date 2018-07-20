@@ -1,0 +1,89 @@
+page-coin-details {
+  .coin-content {
+    margin: 0px 10px 10px 10px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  #coin-description p:first-child{
+    margin: 0px;
+  }
+  #coin-description {
+    display: inline-block;
+    position: relative;
+  }
+  #coin-description p{
+    color: color($colors, lighttxt);
+    padding: 2%;
+  }
+  #description-content {
+    overflow: hidden;
+  }
+  .read-more {
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .read-more button {
+    color: color($colors, lighttxt);
+    background : none !important;
+  }
+  #description-content.collapsed {
+    max-height: 115px;
+  }
+  .fade {
+    position: absolute; 
+    left: 0;
+    width: 100%; 
+    text-align: center; 
+    margin: 0; padding: 30px 0; 
+    height: 115px;
+    background-image: linear-gradient(to bottom, transparent, #000);
+  }
+}
+
+#coinPrice {
+  text-align: center;
+  color: #E3E3E3;
+  font-size: 24px;
+  padding: 4% 0 1% 0;
+}
+
+#accountValueDetails {
+  text-align: center;
+  color: #E3E3E3;
+  font-size: 16px;
+}
+
+#dateRange button {
+  font-size: 16px;
+  background-color: transparent;
+  color: #E3E3E3;
+  padding: 8px 4% 0 4%;
+}
+
+.selected {
+  text-decoration: underline;
+  color: #00A10C !important;
+  font-weight: bold;
+}
+span.label {
+  text-transform: uppercase !important;
+  font-size: .8em;
+  color: #fcf81b;
+  display: block;
+}
+
+span.answer {
+  font-size: 1.2em;
+  color: #E3E3E3;
+}
+
+.toolbar-title toolbar-title-md {
+  padding : 0 !important;
+}
+
+.coinIcon {
+  width:32px;
+  vertical-align:middle;
+  margin-right: 7px;  
+}

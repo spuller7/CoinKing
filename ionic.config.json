@@ -1,0 +1,8 @@
+{
+  "name": "CoinKing",
+  "app_id": "771fcd99",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,0 +1,32 @@
+<ion-content id="onboardingContent">
+  <ion-slides pager (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <div>
+        <ion-icon class="onboardingIcon" ios="ios-analytics" md="md-analytics" color="green"></ion-icon>
+      </div>
+      <div class="onboardingDescriptor">
+        <h2>Simplicity in Mind</h2>
+        <p color="lighttxt">An app created for the average investor. Tools simplified to accomplish easy monitoring of your crypto portfolio.</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-icon class="onboardingIcon" ios="ios-filing" md="md-filing" color="green"></ion-icon>
+      </div>
+      <div class="onboardingDescriptor">
+        <h2>Expansive Coin Support</h2>
+        <p color="lighttxt">Suporting even the newest listings to provide you a convenient interface to monitor all your favorite coins.</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div>
+        <ion-icon class="onboardingIcon" ios="ios-trending-up" md="md-trending-up" color="green"></ion-icon>
+      </div>
+      <div class="onboardingDescriptor">
+        <h2>Leveraging Industry Leaders</h2>
+        <p color="lighttxt">Using APIs from Coin Marketcap and Crypto Compare to provide you with the most accurate and up to date data.</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <button (click)="skip()" id="skip">{{ skipMsg }}</button>
+</ion-content>

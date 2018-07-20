@@ -1,0 +1,47 @@
+page-onboarding {
+
+}
+
+.swiper-pagination-bullet-active {
+  background: #00A10C;
+}
+
+.swiper-pagination {
+  bottom: 8% !important;
+}
+
+#skip {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  background: none !important;
+  text-align: center;
+  cursor: pointer;
+  z-index: 5;
+  color: #E3E3E3;
+}
+
+#onboardingContent {
+  background-color: #414141;
+  background-image: -webkit-linear-gradient(80deg, #333333 25%, #414141 45%);
+}
+
+.onboardingDescriptor{
+  color: #E3E3E3;
+  padding: 0 5%;
+}
+
+.onboardingDescriptor p{
+  color: #aaaaaa;
+
+}
+
+.onboardingIcon{
+  font-size: 7em;
+}
+
+page-onboarding h2 {
+  margin-top: 10% !important;
+  font-weight: bold;
+  font-size: 1.5em;
+}

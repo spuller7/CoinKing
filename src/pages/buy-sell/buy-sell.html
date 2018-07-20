@@ -1,0 +1,62 @@
+<!--
+  Generated template for the AddCoinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="float:right" src="assets/CoinKingLogo.svg" id="logo" />
+    </ion-title>
+  </ion-toolbar>
+  </ion-navbar>
+  <div class="mainBackground short">
+    <div id="accountValue">{{coinName}} {{type}} Trade</div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="formgroup" (ngSubmit)="addTransaction()">
+    <div style="background-color: #414141; margin: 15px 10px 10px 10px; padding: 5px; border-radius: 10px;">
+      <ion-item style="background: none !important;">
+        <ion-label>Amount</ion-label>
+        <ion-input placeholder="0.00" type="number" formControlName="amount"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="amount.hasError('required') && amount.touched" class="errorMessage">
+        *Required Field
+      </ion-item>
+  
+      <ion-item style="background: none !important;">
+        <ion-label>Price</ion-label>
+        <ion-input placeholder="$0.00" type="number" formControlName="price"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="price.hasError('required') && price.touched" class="errorMessage">
+        *Required Field
+      </ion-item>
+    </div>
+    <div style="background-color: #414141;
+      margin: 15px 10px 10px 10px;
+      padding: 5px;
+      border-radius: 10px;">
+    <ion-item>
+      <ion-label>Trade Date</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY" formControlName="date"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="date.hasError('required') && date.touched" class="errorMessage">
+      *Required Field
+    </ion-item>
+    </div>
+    <ion-row style=" margin: 15px 10px 10px 10px;">
+      <ion-col text-center>
+        <button ion-button type="submit" [disabled]="!formgroup.valid" style="background-color: #414141;
+        border-radius: 10px;
+        width: 100%;">Add Trade</button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span style="height:32px;">
+        {{coinName}}
+      </span>
+    </ion-title>
+  </ion-navbar>
+  <div id="dateRange" style="height: 30px; text-align: center;"><button class="oneHour" (click)='onOneHour();'>1h</button><button class="oneDay" (click)='onOneDay();'>1d</button><button class="oneWeek" (click)='onOneWeek();'>1w</button><button class="oneMonth" (click)='onOneMonth();'>1m</button><button class="threeMonths" (click)='onThreeMonths();'>3m</button><button class="oneYear" (click)='onOneYear();'>1y</button><button class="fiveYears" (click)='onFiveYears();'>5y</button></div>
+</ion-header>
+
+<ion-content padding>
+  <div class="mainBackground">
+      <div  *ngIf="coinData">
+        <div id="coinPrice"></div>
+        <div id="accountValueDetails">{{coinData.change >= 0 ? "+" : ""}}{{ coinData.change | currency:'USD'}} ({{coinData.change >= 0 ? "+" : ""}}{{ coinData.percentChange | number:'1.2-2'}}%) {{coinData.chartDescriptor}}</div>
+      </div>
+    </div>
+  <div class="graphContainer">
+    <canvas id="ctx"></canvas>
+  </div>
+  <div style="
+    display: flex;
+    margin: 0px 10px 10px 10px;
+    border-spacing: 10px;">
+    <div style="width:50%; padding-right: 5px;">
+      <button (click)='tradeCoin("Buy");' ion-button style="background-color: #414141;
+      border-radius: 10px;
+      width: 100%;
+      float: left;
+      margin-left: 0;
+      margin-right: 0;">Buy</button>
+    </div>
+     <div style="width:50%; padding-left: 5px;">
+      <button (click)='tradeCoin("Sell");' ion-button style="background-color: #414141;
+      border-radius: 10px;
+      width: 100%;
+      float: left;
+      margin-left: 0;
+      margin-right: 0">Sell</button>
+    </div>
+  </div>
+  <div class="coin-content" *ngIf="coinData">
+    <ion-grid>
+      <ion-row style="padding-bottom: 16px;">
+        <ion-col>
+          <span class="answer">{{ coinData.HIGH24HOUR | currency:'USD'}}</span>
+          <span class="label">24H High</span>
+        </ion-col>
+        <ion-col>
+          <span class="answer">{{ coinData.LOW24HOUR | currency:'USD'}}</span>
+          <span class="label">24H Low</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+      <ion-col>
+        <span class="answer">{{ coinData.MKTCAP | currency:'USD'}}</span>
+        <span class="label">Market Cap</span>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+   <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span class="infoLabel">Transaction History</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list style="margin-bottom: 10px;" *ngIf="transactionHistory.length > 0; else no_transactions">
+    <ion-item-sliding *ngFor="let transaction of transactionHistory let i = index">
+      <ion-item no-lines>
+        <ion-grid style="padding: 0px">
+          <ion-row>
+            <ion-col>
+              <div *ngIf="transaction.transaction_type == 'Buy'; else sell_display" style="color:#00A10C; font-size: 12px; font-weight: bold;">
+                BUY
+              </div>
+              <ng-template #sell_display>
+                <div style="color:#ff3232; font-size: 12px; font-weight: bold;">
+                  SELL
+                </div>
+              </ng-template>
+              <div style="float:left; width:65px; color:#727272; font-size: 10px;">
+                {{transaction.transaction_date}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="text-align:center; padding-top:3px; float:right; padding-right: 3px;">
+                {{transaction.amount}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <div style="float:left; width:65px; color:#727272;padding-top:3px;">
+                {{transaction.coin_symbol}}
+              </div>
+            </ion-col>
+            <ion-col>
+              <ion-note item-end color="lighttxt" style="float:right; margin:0px;padding-top:3px;">
+                {{transaction.price | currency:'USD':true}}
+              </ion-note>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button>
+          <ion-icon name="close" class="size"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ng-template #no_transactions><div style="text-align: center; font-style: italic; color: rgba(255, 255, 255, 0.4); margin-bottom: 15px;">No transanctions</div></ng-template>
+
+  <ion-grid style="margin-top: 10px;">
+    <ion-row>
+      <ion-col>
+        <span class="infoLabel">News</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div style="text-align: center; font-style: italic; color: rgba(255, 255, 255, 0.4); padding-bottom: 10px;">No recent articles</div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span class="infoLabel">Description</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div id="coin-description" class="coin-content" *ngIf="coinData">
+    <div><div class="fade"></div></div>
+    <div id="description-content" class="collapsed"></div>
+    <div class="read-more"><button (click)='onReadMore();' style="background-color: #414141;">{{descriptionButtonText}}</button></div>
+  </div>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="float:right" src="assets/CoinKingLogo.svg" id="logo" />
+    </ion-title>
+  </ion-toolbar>
+  </ion-navbar>
+  <div class="mainBackground short">
+    <div id="accountValue">Settings</div>
+  </div>
+</ion-header>
+
+<ion-content padding>
+  <ion-list id="settings-list">
+    <ion-item (click)="changeCurrency()">
+      <ion-avatar item-start>
+        <ion-icon name="{{logo}}"></ion-icon>
+      </ion-avatar>
+      <h2>Currency</h2>
+      <p>{{currency}}</p>
+    </ion-item>
+    <ion-item (click)="changePortfolioName()">
+      <ion-avatar item-start>
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <h2>Portfolio Name</h2>
+      <p>{{portfolioName}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <ion-icon name="download"></ion-icon>
+      </ion-avatar>
+      <h2>Download Version</h2>
+      <p>Version 0.6.2</p>
+    </ion-item>
+</ion-list>
+</ion-content>

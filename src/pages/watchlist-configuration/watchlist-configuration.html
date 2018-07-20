@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit Watchlist</ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="searchCoins($event)" (ionCancel)="searchCoins($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list [virtualScroll]="coins">
+    <ion-item *virtualItem="let coin"  (click)="coinSelect(allcoins[coin].symbol, allcoins[coin].name, allcoins[coin].id)" class="coinbtn" no-lines>
+        <div style="float:left; width:24px;">
+            <img style="float:left; width:18px; margin-right: 7px;" class="coinIcon" src="https://s2.coinmarketcap.com/static/img/coins/16x16/{{allcoins[coin].id}}.png" />
+        </div>
+      {{allcoins[coin].symbol}} - {{ allcoins[coin].name }}
+      <ion-icon style="margin:auto" name="checkmark-circle" color="primary" item-end *ngIf="selected.indexOf(allcoins[coin].symbol) != '-1'" color="green"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

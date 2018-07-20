@@ -1,0 +1,58 @@
+<!--
+  Generated template for the AddCoinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img style="float:right" src="assets/CoinKingLogo.svg" id="logo" />
+    </ion-title>
+  </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <div class="mainBackground" style="height:55px;">
+    <div id="accountValue">Coin Portfoio</div>
+  </div>
+  <ion-list style="margin-top:2px">
+      <ion-item no-lines>
+        <img style="float:left; width:18px; margin-right: 7px;" class="coinIcon" src="https://files.coinmarketcap.com/static/img/coins/32x32/bitcoin.png" />
+        <div style="float:left; width:65px;">
+          Bitcoin
+        </div>
+        <ion-note item-end color="lighttxt">
+          1.6
+        </ion-note>
+      </ion-item>
+      <ion-item no-lines>
+        <img style="float:left; width:18px; margin-right: 7px;" class="coinIcon" src="https://files.coinmarketcap.com/static/img/coins/32x32/ethereum.png" />
+        <div style="float:left; width:65px;">
+          Ethereum
+        </div>
+        <ion-note item-end color="lighttxt">
+          3.568
+        </ion-note>
+      </ion-item>
+      <ion-item no-lines>
+        <img style="float:left; width:18px; margin-right: 7px;" class="coinIcon" src="https://files.coinmarketcap.com/static/img/coins/32x32/litecoin.png" />
+        <div style="float:left; width:65px;">
+          Litecoin
+        </div>
+        <ion-note item-end color="lighttxt">
+          40.562
+        </ion-note>
+      </ion-item>
+      <ion-item class="add-button">
+      <a (click)="showWatchlistConfiguration()">
+      <ion-icon name="add-circle"></ion-icon>
+      </a>
+    </ion-item>
+  </ion-list>
+</ion-content>

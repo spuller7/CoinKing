@@ -1,0 +1,26 @@
+page-settings {
+
+}
+
+#settings-list{
+   margin-top: 4px;
+}
+
+#settings-list ion-item {
+    background: none !important;
+    margin-bottom: 2px;
+    color: #E3E3E3 !important;
+}
+
+#settings-list .item-inner{
+  border-bottom: 1px solid #616161  !important;
+}
+
+page-settings ion-icon {
+  font-size: 2em;
+}
+
+page-settings ion-avatar {
+  min-width: 0 !important;
+  min-height: 1.7em !important;
+}

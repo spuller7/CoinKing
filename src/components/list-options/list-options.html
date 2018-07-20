@@ -1,0 +1,28 @@
+<div>
+  <ion-list radio-group ng-model="display" (ionChange)="close($event)">
+    <ion-item >
+      <ion-label>Last Price</ion-label>
+      <ion-radio value="last_price" [checked]="list_value=='last_price'"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Equity</ion-label>
+      <ion-radio value="equity" [checked]="list_value=='equity'"></ion-radio>
+    </ion-item>
+     <ion-item>
+      <ion-label>Holdings</ion-label>
+      <ion-radio value="holdings" [checked]="list_value=='holdings'"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>24h Percent Change</ion-label>
+      <ion-radio value="percent_change" [checked]="list_value=='percent_change'"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Gain/Loss</ion-label>
+      <ion-radio value="total_gain" [checked]="list_value=='total_gain'"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Percent Change</ion-label>
+      <ion-radio value="total_percent_change" [checked]="list_value=='total_percent_change'"></ion-radio>
+    </ion-item>
+  </ion-list>
+</div>

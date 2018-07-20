@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Currency Settings</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="closePopup()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list radio-group id="currencyList" [(ngModel)]="currency" style="background-color: none;" lines>
+    <ion-item>
+      <ion-label>USD</ion-label>
+      <ion-radio (ionSelect)="currencyChange('USD')" value="USD" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Euro</ion-label>
+      <ion-radio (ionSelect)="currencyChange('Euro')" value="Euro"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Bitcoin</ion-label>
+      <ion-radio (ionSelect)="currencyChange('Bitcoin')" value="Bitcoin"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>
