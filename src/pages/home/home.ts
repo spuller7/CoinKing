@@ -24,8 +24,6 @@ import { Network } from '@ionic-native/network';
     -Add loader to market cap list
     -Make select item in side item grey color
   FIXME:
-    -Can't add new coin
-    -Closepup on setting item is broken
 
 */
 
@@ -55,7 +53,7 @@ export class HomePage {
   connectionToast : Toast = null;
 
 	constructor(private toast: ToastController, private alertCtrl: AlertController, private network: Network, public loading: LoadingController, private _transactions: DatabaseProvider, public navCtrl: NavController, private _data: DataProvider, private storage: Storage, public popoverCtrl: PopoverController, public _listData : ListProvider) {
-		//this.storage.remove('storedCoins');
+		this.storage.remove('storedCoins');
     this.startup = true;
 
     this.red = $('#red').css("background-color");
@@ -233,7 +231,6 @@ export class HomePage {
       let entry = this.storedCoins.Coins[i];
       //For last price data
       let price = data[i]['RAW']['' + entry.symbol + '']['' + this._data.currencySymbol + '']['PRICE'];
-      console.log(entry);
       entry.price = price;
       //For equity data
       if(this.coinsOwned[entry.symbol] != null)
@@ -271,11 +268,8 @@ export class HomePage {
       //For Total percent gain/loss data
       if(this.coinsOwned[entry.symbol] != null)
       {
-        console.log(entry.equity);
-        console.log(Math.abs(coinInvestmentAmount[entry.symbol]));
         let investment = Math.abs(coinInvestmentAmount[entry.symbol]);
         let diff = entry.equity - investment;
-        console.log(diff);
         entry.totalPercentGainLoss = (diff / investment);
       }
       else
@@ -375,11 +369,12 @@ export class HomePage {
     }
   }
 
-	coinDetails(coin, name, ccID) {
+	coinDetails(coin, name, ccID, holdings) {
       this.navCtrl.push(CoinDetailsPage, {
         coin: coin,
-        name:name,
-        ccID: ccID
+        name: name,
+        ccID: ccID,
+        holdings: holdings
       });
 
     this.clearGraph();
@@ -454,7 +449,6 @@ export class HomePage {
     for(var i = 0; i < data.length; i++)
     {  
       let coinEquityData = data[i].Data.map((a) => (a.close * this.storedCoins.Coins[i].holdings));
-      console.log(i);
       for(var j = 0; j< coinEquityData.length; j++)
       {
         let value = coinEquityData[j];
@@ -470,8 +464,6 @@ export class HomePage {
       }
       if(i == data.length - 1)
       {
-        console.log(dataProcessed + " data points for portfolio chart");
-        console.log(aggregatedPortfolioData);
         loader.dismiss();
         this.displayPortfolioChart(aggregatedPortfolioData);
       }
@@ -543,13 +535,24 @@ export class HomePage {
         this.numberAnimation();
       }
       
+      let chartColor = "";
+      let change = this.portfolioData['max'] - this.portfolioData['min'];
+      if(change < 0)
+      {
+        chartColor = $("#red").css('background-color');
+      }
+      else
+      {
+        chartColor = $("#green").css('background-color');
+      }
+
       this.currentChart = new Chart($("#portfolioChart"), {
         type: 'LineWithLine',
         data: {
           labels: aggregatedPortfolioData,
           datasets: [{
             data: aggregatedPortfolioData,
-            borderColor: "#00A10C",
+            borderColor: chartColor,
             backgroundColor : "#383838",
             fill: false 
           }]

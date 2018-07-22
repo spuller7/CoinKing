@@ -32,7 +32,7 @@
       margin-right: 0;">Buy</button>
     </div>
      <div style="width:50%; padding-left: 5px;">
-      <button (click)='tradeCoin("Sell");' ion-button style="background-color: #414141;
+      <button (click)='tradeCoin("Sell");' ion-button [disabled]="holdings <= 0" style="background-color: #414141;
       border-radius: 10px;
       width: 100%;
       float: left;

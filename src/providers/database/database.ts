@@ -82,6 +82,19 @@ export class DatabaseProvider {
     });
   }
 
+  getCoinHolding(coin)
+  {
+    let sql = 'SELECT buys.coin_symbol AS coin_symbol, (buys.total_buys - IFNULL(sells.total_sells,0)) AS amount_owned FROM (SELECT SUM(amount) as total_buys, coin_symbol FROM transactions WHERE transaction_type="Buy" AND coin_symbol = "' + coin + '" GROUP BY coin_symbol) AS buys LEFT OUTER JOIN (SELECT SUM(amount) as total_sells, coin_symbol FROM transactions WHERE transaction_type="Sell" AND coin_symbol = "' + coin + '" GROUP BY coin_symbol) AS sells ON buys.coin_symbol = sells.coin_symbol';
+    this.amountOwned = [];
+    return this.db.executeSql(sql, []).then(response => {
+      for(let i = 0; i < response.rows.length; i++)
+      {
+        this.amountOwned[response.rows.item(i).coin_symbol] = response.rows.item(i).amount_owned;
+      }
+      return Promise.resolve(this.amountOwned);
+    });
+  }
+
   //get total gain/loss data
   getCoinInvestmentAmount()
   {

@@ -45,7 +45,7 @@
   <ion-list *ngIf="storedCoins; else addToWatchlist" id="watchlist">
     <ion-item-group reorder="true" (ionItemReorder)="reorderItems($event)">
     <ion-item-sliding *ngFor="let coin of storedCoins.Coins let i = index">
-      <ion-item (click)="coinDetails(coin.symbol, coin.name, coin.ccID)" no-lines>
+      <ion-item (click)="coinDetails(coin.symbol, coin.name, coin.ccID, coin.holdings)" no-lines>
         <img style="float:left; width:18px; margin-right: 7px;" class="coinIcon" src="{{coin.imageURL}}" />
         <div style="float:left; width:65px;">
           {{coin.symbol}}

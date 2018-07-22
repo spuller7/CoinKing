@@ -6,13 +6,6 @@ import { DataProvider } from '../../providers/data/data';
 import { LoadingController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 
-/**
- * Generated class for the BuySellPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-buy-sell',
@@ -28,18 +21,31 @@ export class BuySellPage {
   coinName: Object;
   type: string;
   transactionHistory: any;
+  holdings = 0;
 
   constructor(public loading: LoadingController, public navCtrl: NavController, public navParams: NavParams, private formBuilder: FormBuilder, private storage: Storage, private _data: DataProvider, private _transactions: DatabaseProvider) {
     this.coin = navParams.get('coin');
     this.coinName = navParams.get('name');
+    this.holdings = navParams.get('holdings');
     this.type = navParams.get('type');
     var currentPrice = navParams.get('currentPrice');
-
-    this.formgroup = formBuilder.group({
-      amount : [ , Validators.required],
-      price : [currentPrice, Validators.required],
-      date : [new Date().toISOString(), Validators.required]
-    });
+    if(this.type == "Sell")
+    {
+      this.formgroup = formBuilder.group({
+        amount : [ , [Validators.required, Validators.max(this.holdings), Validators.min(0)]],
+        price : [currentPrice, Validators.required],
+        date : [new Date().toISOString(), Validators.required]
+      });
+    }
+    else 
+    {
+      this.formgroup = formBuilder.group({
+        amount : [ , [Validators.required, Validators.min(0)]],
+        price : [currentPrice, [Validators.required, Validators.min(0)]],
+        date : [new Date().toISOString(), Validators.required]
+      });
+    }
+    
 
     this.amount = this.formgroup.controls['amount'];
     this.price = this.formgroup.controls['price'];

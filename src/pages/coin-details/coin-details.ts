@@ -31,12 +31,14 @@ export class CoinDetailsPage {
   isStartup: boolean;
   startingPrice;
   ccID = 0;
+  holdings = 0;
   fixedAmount = 2;
-  descriptionButtonText = "READ MORE"
+  descriptionButtonText = "READ MORE";
 
   constructor(public loading: LoadingController, public navCtrl: NavController, public navParams: NavParams, private _data: DataProvider, private _transactions: DatabaseProvider) {
     this.ccID = navParams.get('ccID');
     this.coin = navParams.get('coin');
+    this.holdings = navParams.get('holdings');
     this.coinName = navParams.get('name');
     this.isStartup = true;
   }
@@ -44,6 +46,15 @@ export class CoinDetailsPage {
   ionViewWillEnter() {
     this.transactionHistory = [];
     this.loadCoin();
+    this.getCoinHoldings();
+  }
+
+  getCoinHoldings() {
+      let holdingAmount = this._transactions.getCoinHolding(this.coin);
+      this.holdings = 0;
+      holdingAmount.then((res) => {
+        this.holdings = res['' + this.coin + ''];
+      });
   }
 
   loadCoin() {
@@ -286,6 +297,7 @@ export class CoinDetailsPage {
     this.navCtrl.push(BuySellPage, {
       coin: this.coin,
       name: this.coinName,
+      holdings : this.holdings,
       currentPrice: this.coinData['PRICE'],
       type: transaction_type
     });

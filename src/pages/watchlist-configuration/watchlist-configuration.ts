@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from 'ionic-angular';
+import { DatabaseProvider } from '../../providers/database/database';
+import { LoadingController, AlertController } from 'ionic-angular';
 import * as $ from 'jquery';
 
 /**
@@ -25,8 +26,9 @@ export class WatchlistConfigurationPage {
 	selected = [];
 	allcoins:any;
   coins: any;
+  coinsOwned = [];
 
-	constructor(private _data: DataProvider, public loading: LoadingController, private storage: Storage, public navCtrl: NavController, public navParams: NavParams) {
+	constructor(private _data: DataProvider, private alertCtrl: AlertController, public loading: LoadingController, private storage: Storage, public navCtrl: NavController, public navParams: NavParams, private _transactions: DatabaseProvider) {
   }
 
   ionViewDidLoad() {
@@ -45,12 +47,21 @@ export class WatchlistConfigurationPage {
           .subscribe(res => {
             this.raw = res['data'];
             this.allcoins = res['data'];
-            console.log(this.allcoins);
             this.coins = this.objectKeys(this.allcoins);
             loader.dismiss();
 
             this.selected = this.selectedCoins.Coins.map(a => a.symbol);
+            this.getCoinHoldings();
           })
+      });
+    }
+
+    getCoinHoldings()
+    {
+      let coinsHeld = this._transactions.getOwnedCoinAmount();
+      this.coinsOwned = [];
+      coinsHeld.then((res) => {
+        this.coinsOwned = res;
       });
     }
 
@@ -58,7 +69,33 @@ export class WatchlistConfigurationPage {
     {
       if($.inArray(coin, this.selected) != -1)
       {
-        this.removeCoin(coin);
+        if(this.coinsOwned[coin] > 0)
+        {
+          let alert = this.alertCtrl.create({
+            title: 'Erase Holdings',
+            message: "Seems you have holdings in this coin. Removing this coin will remove the coin's transaction history. Would you still like to proceed?",
+            buttons: [
+              {
+                text: 'No, Keep Coin',
+                role: 'cancel',
+                handler: () => {
+                }
+              },
+              {
+                text: 'Yes, Remove Coin',
+                handler: () => {
+                  this._transactions.removeCoinData(coin);
+                  this.removeCoin(coin);
+                }
+              }
+            ]
+          });
+          alert.present();
+        }
+        else
+        {
+          this.removeCoin(coin);
+        }
       }
       else
       {
@@ -76,6 +113,7 @@ export class WatchlistConfigurationPage {
       var selectedCoin = this._data.createCoinObject(name, coin, imageURL, ccID)
       this.selectedCoins.Coins.push(selectedCoin);
       this.storage.set('storedCoins', this.selectedCoins);
+      this.selected = this.selectedCoins.Coins.map(a => a.symbol);
     }
 
     removeCoin(coin)
