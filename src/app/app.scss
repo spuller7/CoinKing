@@ -38,3 +38,15 @@ ion-item {
 ion-title {
   padding-right: 0px !important ;
 }
+
+#logo {
+  width: 120px;
+}
+
+#red{
+background-color: map-get($colors, red);
+}
+
+#green{
+background-color: map-get($colors, green);
+}

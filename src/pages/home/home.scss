@@ -9,19 +9,6 @@ page-home {
   }
 }
 
-#logo {
-    max-width: 40% !important;
-    width: 40%;
-}
-
-#red{
-  background-color: map-get($colors, red);
-}
-
-#green{
-  background-color: map-get($colors, green);
-}
-
 .infoLabel {
     text-transform:uppercase;
     color: #E3E3E3;
